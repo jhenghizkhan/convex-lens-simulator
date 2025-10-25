@@ -80,6 +80,7 @@ def draw_ray_diagram(u, h_o, f):
     plt.plot([u, v], [h_o, h_i], 'g-', linewidth=1.5, alpha=0.7) # Central Ray
     
     if u < -f:
+        # Simple approximation for visual clarity
         y_hit = h_o - (h_o/u) * (-u + f)
         plt.plot([u, LENS_X], [h_o, y_hit], 'r-', linewidth=1.5, alpha=0.7) # Focal Ray Incoming
         if abs(v) < 100:
@@ -115,5 +116,15 @@ st.sidebar.header("Controls (أدوات التحكم)")
 # Focal Length control
 f_input = st.sidebar.slider("1. Focal Length (f) [البعد البؤري]:", min_value=5, max_value=20, value=10, step=1)
 
-# Object Height control
-h_o_input = st.sidebar.slider("2. Object Height ($h_o$) [ارتفاع الجسم]:", min_value=1.0, max_value=10.0, value=5.0,
+# Object Height control (CORRECTED LINE)
+h_o_input = st.sidebar.slider("2. Object Height ($h_o$) [ارتفاع الجسم]:", min_value=1.0, max_value=10.0, value=5.0, step=0.5)
+
+# Object Distance control
+u_min = -3 * f_input
+u_max = -0.1 * f_input
+
+st.sidebar.markdown(f"***$F_1$ is at {-f_input} cm, $2F_1$ is at {-2*f_input} cm.***")
+u_input = st.sidebar.slider("3. Object Distance (u) [مسافة الجسم]:", min_value=u_min, max_value=u_max, value=-15.0, step=0.5)
+
+# Run the simulation
+draw_ray_diagram(u=u_input, h_o=h_o_input, f=f_input)
