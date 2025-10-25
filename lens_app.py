@@ -116,10 +116,10 @@ st.sidebar.header("Controls (أدوات التحكم)")
 # Focal Length control
 f_input = st.sidebar.slider("1. Focal Length (f) [البعد البؤري]:", min_value=5, max_value=20, value=10, step=1)
 
-# Object Height control (CORRECTED LINE)
+# Object Height control (FIXED SYNTAX ERROR)
 h_o_input = st.sidebar.slider("2. Object Height ($h_o$) [ارتفاع الجسم]:", min_value=1.0, max_value=10.0, value=5.0, step=0.5)
 
-# Object Distance control
+# Object Distance control (FIXED LOGIC ERROR: ensures initial value is within min/max)
 u_min = -3 * f_input
 u_max = -0.1 * f_input
 
